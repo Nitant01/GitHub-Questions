@@ -1,0 +1,693 @@
+
+1. Employee Records Maintenance
+
+public class Method2 {
+    int id;
+    String name;
+    float salary;
+    void insertRecord(int r, String n, float s) {
+        id = r;
+        name = n;
+        salary = s;
+    }
+    void displayInformation() {
+        System.out.println(id + " " + name + " " + salary);
+    }
+}
+
+class TestStudent5 {
+    public static void main(String[] args) {
+        Method2 s1 = new Method2();
+        Method2 s2 = new Method2();
+        Method2 s3 = new Method2();
+
+        s1.insertRecord(1, "Break", 1000);
+        s2.insertRecord(2, "Misty", 150000);
+        s3.insertRecord(3, "Ask", 50000);
+
+        s1.displayInformation();
+        s2.displayInformation();
+        s3.displayInformation();
+    }
+}
+
+
+
+
+
+
+2. Student Class
+
+class Student {
+    int id;
+    String name;
+    Student(int i, String n) {
+        id = i;
+        name = n;
+    }
+    void display() {
+        System.out.println("ID: " + id + " Name: " + name);
+    }
+    public static void main(String args[]) {
+        Student s = new Student(101, "John");
+        s.display();
+    }
+}
+
+
+
+
+
+
+
+
+3. Constructor Overloading
+
+class Box {
+    int length, breadth, height;
+    double l, b, h;
+    Box(int length, int breadth, int height) {
+        this.length = length;
+        this.breadth = breadth;
+        this.height = height;
+    }
+    Box(double l, double b, double h) {
+        this.l = l;
+        this.b = b;
+        this.h = h;
+    }
+    int volume() {
+        return length * breadth * height;
+    }
+    double volumeDouble() {
+        return l * b * h;
+    }
+    public static void main(String[] args) {
+        Box box1 = new Box(3, 4, 5);
+        Box box2 = new Box(3.5, 4.5, 5.5);
+        System.out.println("Volume(int): " + box1.volume());
+        System.out.println("Volume(double): " + box2.volumeDouble());
+    }
+}
+
+
+
+
+
+
+
+
+4. Calculator Using Inheritance
+
+import java.util.Scanner;
+class Calculator {
+    public double add(double a, double b) {
+        return a + b;
+    }
+    public double subtract(double a, double b) {
+        return a - b;
+    }
+}
+
+class AdvancedCalculator extends Calculator {
+    public double multiply(double a, double b) {
+        return a * b;
+    }
+    public double divide(double a, double b) {
+        if (b != 0) {
+            return a / b;
+        } else {
+            System.out.println("Error: Division by zero is not allowed");
+            return Double.NaN;
+        }
+    }
+}
+
+public class CalculatorApp {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        AdvancedCalculator calc = new AdvancedCalculator();
+        System.out.print("Enter first number: ");
+        double num1 = scanner.nextDouble();
+        System.out.print("Enter second number: ");
+        double num2 = scanner.nextDouble();
+        System.out.println("Addition: " + calc.add(num1, num2));
+        System.out.println("Subtraction: " + calc.subtract(num1, num2));
+        System.out.println("Multiplication: " + calc.multiply(num1, num2));
+        System.out.println("Division: " + calc.divide(num1, num2));
+        scanner.close();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+5. Area Calculation Using Interface
+
+interface Shape {
+    double calculateArea();
+}
+
+class Circle implements Shape {
+    double radius;
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    public double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+}
+
+class Rectangle implements Shape {
+    double length;
+    double width;
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+    public double calculateArea() {
+        return length * width;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape circle = new Circle(5);
+        System.out.println("Area of Circle: " + circle.calculateArea());
+        Shape rectangle = new Rectangle(4, 6);
+        System.out.println("Area of Rectangle: " + rectangle.calculateArea());
+    }
+}
+
+
+
+
+
+
+
+
+6. Salespersons Sales Calculation
+
+import java.util.Scanner;
+public class SalesPersonsSales {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        final int NUM_SALESPERSONS = 5;
+        int[] ids = {101, 102, 103, 104, 105};
+        double[] sales = new double[NUM_SALESPERSONS];
+        double totalSales = 0;
+        double maxSale = Double.MIN_VALUE;
+        double minSale = Double.MAX_VALUE;
+
+        for (int i = 0; i < NUM_SALESPERSONS; i++) {
+            System.out.println("Enter sales for salesperson " + ids[i] + ":");
+            sales[i] = scanner.nextDouble();
+            totalSales += sales[i];
+            if (sales[i] > maxSale) {
+                maxSale = sales[i];
+            }
+            if (sales[i] < minSale) {
+                minSale = sales[i];
+            }
+        }
+
+        System.out.println("\nSalesperson Sales:");
+        for (int i = 0; i < NUM_SALESPERSONS; i++) {
+            System.out.println("SalespersonID " + ids[i] + ": " + sales[i]);
+        }
+        double averageSales = totalSales / NUM_SALESPERSONS;
+        System.out.println("\nTotal sales: " + totalSales);
+        System.out.println("Average Sales: " + averageSales);
+        System.out.println("Max Sale: " + maxSale);
+        System.out.println("Min Sale: " + minSale);
+        scanner.close();
+    }
+}
+
+
+
+
+
+
+
+
+7. Multiple Inheritance Using Interface
+
+interface Printable {
+    void print();
+}
+
+interface Showable {
+    void show();
+}
+
+class Main implements Printable, Showable {
+    public void print() {
+        System.out.println("Hello");
+    }
+    public void show() {
+        System.out.println("Welcome");
+    }
+    public static void main(String args[]) {
+        Main obj = new Main();
+        obj.print();
+        obj.show();
+    }
+}
+
+
+
+
+
+
+
+
+8. NullPointer Exception
+
+class Nullpt {
+    void display() {
+        try {
+            String str = null;
+            System.out.println(str.length());
+        } catch (NullPointerException e) {
+            System.out.println(e);
+        }
+        System.out.println("Exception handled");
+    }
+    public static void main(String args[]) {
+        Nullpt obj = new Nullpt();
+        obj.display();
+    }
+}
+
+
+
+
+
+
+
+
+9. NumberFormat Exception
+
+class ExnumFormat {
+    void display() {
+        try {
+            String str = "hello";
+            int num = Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
+        System.out.println("Exception handled");
+    }
+    public static void main(String args[]) {
+        ExnumFormat obj = new ExnumFormat();
+        obj.display();
+    }
+}
+
+
+
+
+
+
+10. ArrayIndexOutOfBounds Exception
+
+class Exarray {
+    void display() {
+        try {
+            int a[] = new int[5];
+            a[6] = 5;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(e);
+        }
+        System.out.println("Exception handled");
+    }
+    public static void main(String args[]) {
+        Exarray obj = new Exarray();
+        obj.display();
+    }
+}
+
+
+
+
+
+
+11. Throws Keyowrd
+
+public class Testthrows {
+    public static void validate(int age) throws ArithmeticException {
+        if (age < 18) {
+            throw new ArithmeticException("Person is not eligible to vote");
+        } else {
+            System.out.println("Person is eligible to vote");
+        }
+    }
+    public static void main(String args[]) {
+        try {
+            validate(15);
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Rest of the code...");
+    }
+}
+
+
+
+
+
+
+
+12. try-catch with finally Block
+
+ public class Main {
+    public static void main(String[] args) {
+        try {
+            int a = 10 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println(e);
+        } finally {
+            System.out.println("Finally block is executed");
+        }
+        System.out.println("Rest of the code");
+    }
+}
+
+
+
+
+
+
+13. File Creation
+
+import java.io.File;
+import java.io.IOException;
+class CreateFile {
+    public static void main(String args[]) {
+        try {
+            File file = new File("D:\\FileOperationExample.txt");
+            if (file.createNewFile()) {
+                System.out.println("File " + file.getName() + " is created successfully");
+            } else {
+                System.out.println("File already exists in the directory");
+            }
+        } catch (IOException exception) {
+            System.out.println("An unexpected error occurred.");
+            exception.printStackTrace();
+        }
+    }
+}
+
+
+
+
+
+
+
+14. Serialization
+
+import java.io.*;
+class Student implements Serializable {
+    int id;
+    String name;
+    public Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+}
+
+class Persist {
+    public static void main(String args[]) {
+        try {
+            Student s1 = new Student(211, "Ravi");
+            FileOutputStream fout = new FileOutputStream("f.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fout);
+            out.writeObject(s1);
+            out.flush();
+            out.close();
+            System.out.println("Success");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
+
+
+
+
+
+
+15. Deserialization
+
+import java.io.*;
+class Depersist {
+    public static void main(String args[]) {
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("f.txt"));
+            Student s = (Student) in.readObject();
+            System.out.println(s.id + " " + s.name);
+            in.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
+class Student implements Serializable {
+    int id;
+    String name;
+    public Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+} 
+
+
+
+
+
+
+
+
+
+16. Serialization and Deserialization with Inheritance
+
+import java.io.*;
+class Person implements Serializable {
+    int id;
+    String name;
+    Person(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+}
+
+class Student extends Person {
+    String course;
+    int fee;
+    public Student(int id, String name, String course, int fee) {
+        super(id, name);
+        this.course = course;
+        this.fee = fee;
+    }
+}
+
+public class SerializeISA {
+    public static void main(String args[]) {
+        try {
+            Student st = new Student(211, "Ravi", "Engineering", 50000);
+            FileOutputStream fout = new FileOutputStream("f.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fout);
+            out.writeObject(st);
+            out.flush();
+            out.close();
+            System.out.println("Success");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("f.txt"));
+            Student s = (Student) in.readObject();
+            System.out.println(s.id + " " + s.name + " " + s.course + " " + s.fee);
+            in.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
+
+
+
+
+
+17. Creating Thread by Extending Thread Class
+
+class Multi extends Thread {
+    public void run() {
+        System.out.println("Thread is running");
+    }
+    public static void main(String args[]) {
+        Multi t1 = new Multi();
+        t1.start();
+    }
+}
+
+
+
+
+
+18. Creating Thread by Implementing Runnable Interface
+
+
+class Multi implements Runnable {
+    public void run() {
+        System.out.println("Thread is running");
+    }
+    public static void main(String args[]) {
+        Multi m1 = new Multi();
+        Thread t1 = new Thread(m1);
+        t1.start();
+    }
+}
+
+
+
+
+
+
+
+19. Thread Priority
+
+class MyThread extends Thread {
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + " - Priority: " + Thread.currentThread().getPriority());
+    }
+}
+
+public class ThreadPriority {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        MyThread t2 = new MyThread();
+        MyThread t3 = new MyThread();
+        t1.setName("Thread 1");
+        t2.setName("Thread 2");
+        t3.setName("Thread 3");
+        System.out.println("Initial Priorities:");
+        t1.start();
+        t2.start();
+        t3.start();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        t1.setPriority(Thread.MIN_PRIORITY);
+        t2.setPriority(Thread.NORM_PRIORITY);
+        t3.setPriority(Thread.MAX_PRIORITY);
+        System.out.println("\nNew Priorities:");
+        MyThread t4 = new MyThread();
+        MyThread t5 = new MyThread();
+        MyThread t6 = new MyThread();
+        t4.setName("Thread 1 (Updated)");
+        t5.setName("Thread 2 (Updated)");
+        t6.setName("Thread 3 (Updated)");
+        t4.setPriority(t1.getPriority());
+        t5.setPriority(t2.getPriority());
+        t6.setPriority(t3.getPriority());
+        t4.start();
+        t5.start();
+        t6.start();
+    }
+}
+
+
+
+
+
+
+
+20. Setting Thread Priorities
+
+import java.lang.*;
+public class ThreadPriorityExample extends Thread {
+    public void run() {
+        System.out.println("Inside the run() method");
+    }
+    public static void main(String[] args) {
+        ThreadPriorityExample th1 = new ThreadPriorityExample();
+        ThreadPriorityExample th2 = new ThreadPriorityExample();
+        ThreadPriorityExample th3 = new ThreadPriorityExample();
+        System.out.println("Priority of thread th1 is: " + th1.getPriority());
+        System.out.println("Priority of thread th2 is: " + th2.getPriority());
+        System.out.println("Priority of thread th3 is: " + th3.getPriority());
+        th1.setPriority(6);
+        th2.setPriority(3);
+        th3.setPriority(4);
+        System.out.println("\nUpdated Priorities:");
+        System.out.println("Priority of thread th1 is: " + th1.getPriority());
+        System.out.println("Priority of thread th2 is: " + th2.getPriority());
+        System.out.println("Priority of thread th3 is: " + th3.getPriority());
+        System.out.println("\nCurrently Executing Thread: " + Thread.currentThread().getName());
+        System.out.println("Priority of main thread is: " + Thread.currentThread().getPriority());
+        Thread.currentThread().setPriority(10);
+        System.out.println("Updated Priority of main thread is: " + Thread.currentThread().getPriority());
+    }
+}
+
+
+
+
+
+21.Generic Method
+
+class Main {
+    public static void main(String[] args) {
+        DemoClass demo = new DemoClass();
+        demo.<String>genericsMethod("Java Programming");
+        demo.<Integer>genericsMethod(25);
+    }
+}
+
+class DemoClass {
+    public <T> void genericsMethod(T data) {
+        System.out.println("Generics Method:");
+        System.out.println("Data Passed: " + data);
+    }
+}
+
+
+
+
+
+
+
+
+22. Generic Class
+
+class Main {
+    public static void main(String[] args) {
+        GenericsClass<Integer> intObj = new GenericsClass<>(5);
+        System.out.println("Generic Class returns: " + intObj.getData());
+        GenericsClass<String> stringObj = new GenericsClass<>("Java Programming");
+        System.out.println("Generic Class returns: " + stringObj.getData());
+    }
+}
+
+class GenericsClass<T> {
+    private T data;
+    public GenericsClass(T data) {
+        this.data = data;
+    }
+    public T getData() {
+        return this.data;
+    }
+}
